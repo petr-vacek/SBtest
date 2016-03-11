@@ -1,0 +1,58 @@
+.SongHeader {
+  border: 2px solid black;
+  background-color: #F0F0FF;
+  font-weight: bold;
+  padding: 1px;
+  border-radius: 7px 7px 7px 7px;
+}
+
+.OneLine {
+  border: 0px solid #E0E0FF;
+}
+
+.prefixBlock {
+  display: inline-flex;
+  flex-direction: column;
+  width: 5.5vw;
+  border: 0px solid red;
+}
+
+.prefixBlock span {
+  text-align: right;
+}
+
+.TextSegment {
+  border: 0px solid red;
+  padding: 0px;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.Chord {
+  font-weight: bold;
+  border: 0px solid blue;
+}
+
+.SngText{
+  border: 0px solid green;
+}
+
+.Register{
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  padding: 0px 8px 2px 8px;
+}
+
+#fileSelector {
+  display: inline;
+  border: 1px solid black;
+  width: 380px;
+}
+
+.TransButton {
+  height: 24px;
+  border-radius: 7px 7px 7px 7px;
+  font-size: 12px;
+}
+

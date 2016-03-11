@@ -1,0 +1,35 @@
+.MyMenu {
+  border-top: 1px solid #0000A0;
+  margin: 0 0 0 0;
+}
+
+.MyMenuItem {
+  display: inline;
+  margin-right: 5px;
+  padding: 2px 7px 3px 7px;
+  background-color: #C0C0C0;
+  border: 1px solid #0000A0;
+  border-radius: 0px 0px 7px 7px;
+  font-weight: bold;
+}
+
+.activeMenuItem {
+  background-color: #F0F000;
+  border: 1px solid red;
+  color: red;
+}
+
+@media screen and (min-width: 992px) {
+  .MyMenuItem {
+    display: block;
+    margin-right: 0px;
+    margin-bottom: 5px;
+    width: 100%;
+    border: 1px solid red;
+    padding: 2px 6px 1px 6px;
+    border-radius: 7px 7px 7px 7px;
+  }
+
+
+
+}
