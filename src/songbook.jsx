@@ -367,10 +367,10 @@ export class SongLine extends React.Component {
       if (mPos !== 0) {
           // just text, no chord
           if (mPos > 0) {
-            mSgmnts.push({chord: '', text: mText.substr(0, mPos)});
+            mSgmnts.push({chord: '\xA0', text: mText.substr(0, mPos)});
             mText = mText.substr(mPos, mText.length);
           } else {
-            mSgmnts.push({chord: '', text: mText});
+            mSgmnts.push({chord: '\xA0', text: mText});
             mText = '';
           }
       } else {
@@ -415,7 +415,7 @@ export class SongLine extends React.Component {
     let mChordStyle = {fontSize: mTextHeight, height: mTextHeight};
     let mTextStyle = {fontSize:mTextHeight};
     let mDispPrefix = 'default';
-    let mPrefixStyle1 = {height: mTextHeight,fontSize:mTextHeight};
+    let mPrefixStyle1 = {height: mTextHeight,fontSize:mTextHeight, fontWeight:'bold'};
     let mPrefixStyle2 = mPrefixStyle1;
     let mOneLineStyle = {height: mRowHeight, display:'inline-flex', flexDirection:'row'};
     switch (this.props.dataItem.type) {
@@ -441,7 +441,7 @@ export class SongLine extends React.Component {
         mPrefixStyle1 = {display:'none'};
         break;
       case ElementType.dttRegister:
-        mOneLineStyle = Object.assign(mOneLineStyle, {height: MultiplyUnits(mRowHeight, 0.5)});
+        mOneLineStyle = Object.assign(mOneLineStyle, {height: MultiplyUnits(mRowHeight, 0.55)});
         mDispPrefix = 'none';
         break;
     }
@@ -483,7 +483,7 @@ export class SongLine extends React.Component {
               case ElementType.dttSolo:
                 return (
                   <span key={shortid.generate()} className="TextSegment">
-                    <span key={shortid.generate()} className="Chord" style={mChordStyle}>
+                    <span key={shortid.generate()} className="Solo" style={mChordStyle}>
                       {ChordTransposer.doTransposition(item.chord, this.props.trans, this.props.forceB) + item.text}
                     </span>
                   </span>
