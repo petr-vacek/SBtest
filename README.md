@@ -1,2 +1,2 @@
 # Testing example
-This is my private esting example while learning Javascript programming
+This is my private testing example while learning Javascript programming
