@@ -63,11 +63,14 @@ describe('Songline segment separation function test:', () => {
   it('Simple Chord and Text separation', () => {
     mSegments = SongLine.separateSegments('Line of {Ami} text');
     mSegments.should.be.array;
-    mSegments.length.should.be.exactly(3);
-    mSegments[0].should.be.exactly('Line of ');
-    mSegments[1].should.be.exactly('#Ami');
-    mSegments[2].should.be.exactly(' text');
-  });
+    mSegments.length.should.be.exactly(2);
+    mSegments[0].should.be.object;
+    mSegments[0].chord.should.be.exactly('\xA0');
+    mSegments[0].text.should.be.exactly('Line\xA0of\xA0');
+    mSegments[1].should.be.object;
+    mSegments[1].chord.should.be.exactly('Ami\xA0');
+    mSegments[1].text.should.be.exactly('\xA0text');
+ });
   it('Units multiplication', () => {
     MultiplyUnits('8px',3).should.be.exactly('24px');
     MultiplyUnits('2vw',4).should.be.exactly('8vw');

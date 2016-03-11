@@ -37,11 +37,18 @@
   border: 0px solid green;
 }
 
-.Register{
-  background-color: black;
+.Solo {
+  font-weight: bold;
+  background-color: #FFFFC0;
+}
+
+.Register {
+  background-color: #808080;
   color: white;
   font-weight: bold;
   padding: 0px 8px 2px 8px;
+  position: relative;
+  top: 1vw;
 }
 
 #fileSelector {
