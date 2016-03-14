@@ -7,6 +7,7 @@ import { Navs } from 'react-bootstrap';
 import './css/main.css';
 import './css/songbook.css';
 import SongPage from './songbook.jsx';
+import shortid from 'shortid';
 
 class NavLink extends React.Component {
   render() {
@@ -19,7 +20,7 @@ class Navigator extends React.Component {
     return (
       <div className="MyMenu">
         <NavLink className="MyMenuItem" to="/">Home</NavLink>
-        <NavLink className="MyMenuItem" to="/about">About</NavLink>
+        <NavLink className="MyMenuItem" to="/phptest">PHPtest</NavLink>
         <NavLink className="MyMenuItem" to="/repos">Repos</NavLink>
         <NavLink className="MyMenuItem" to="/store/petr/documents">Store</NavLink>
         <NavLink className="MyMenuItem" to="/info">Songs</NavLink>
@@ -51,9 +52,64 @@ class Home extends React.Component {
   }
 }
 
-class About extends React.Component {
+class PHPtest extends React.Component {
+
+  content = [];
+
+  makeQuery() {
+    let xmlhttp = new XMLHttpRequest();
+    let url = "";
+
+    xmlhttp.onreadystatechange = () => {
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        this.processSQLResult(xmlhttp.responseText);
+      }
+    };
+    xmlhttp.overrideMimeType('text/html; charset=windows-1250');
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+  }
+
+  processSQLResult(aResponse) {
+    this.content = JSON.parse(aResponse);
+    this.forceUpdate();
+  }
+
   render() {
-    return <div>About page</div>
+/*
+    this.content.map( (record) => {
+      console.log(record.popis)
+    });
+*/
+    return (
+      <div>
+        <div>PHP test page</div>
+        <button onClick={this.makeQuery.bind(this)}> SQL </button>
+        <div>
+          <table className="NewsTable">
+            <thead>
+              <tr>
+                <th>{'id'}</th>
+                <th>{'nadpis'}</th>
+                <th>{'popis'}</th>
+              </tr>
+            </thead>
+            <tbody>
+            {this.content.map( (record) => {
+              return(
+                <tr key={shortid.generate()}>
+                  <td>{record.id}</td>
+                  <td>{record.nadpis}</td>
+                  <td>{record.popis}</td>
+                </tr>
+              )
+            }
+            )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    )
   }
 }
 
@@ -85,15 +141,13 @@ class Store extends React.Component {
 }
 
 
-
-
 ReactDOM.render(
   <Router history={hashHistory}>
       <Route path="/" component={ResponsiveNavigator}>
         <IndexRoute component={Home}/>
         <Route path="/repos" component={Repos}/>
         <Route path="/store/:userName/:reposName" component={Store}/>
-        <Route path="/about" component={About}/>
+        <Route path="/phptest" component={PHPtest}/>
         <Route path="/info" component={SongPage}/>
     </Route>
   </Router>

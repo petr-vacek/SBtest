@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import cptable from 'codepage';
+import shortid from 'shortid';
 import ChordTransposer from './chordtrans.jsx';
-var shortid = require('shortid');
 
 // All song element meta types declaration
 var ElementType = {

@@ -19,6 +19,19 @@
   color: red;
 }
 
+.NewsTable, .NewsTable tr, .NewsTable td, .NewsTable th {
+  border: 1px solid blue;
+  background-color: #F8F8F8;
+  padding: 2px;
+}
+
+.NewsTable th {
+  border: 2px solid red;
+  background-color: #FFFFF0;
+}
+
+
+
 @media screen and (min-width: 992px) {
   .MyMenuItem {
     display: block;
@@ -29,7 +42,5 @@
     padding: 2px 6px 1px 6px;
     border-radius: 7px 7px 7px 7px;
   }
-
-
 
 }
