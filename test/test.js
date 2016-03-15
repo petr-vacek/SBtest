@@ -76,3 +76,39 @@ describe('Songline segment separation function test:', () => {
     MultiplyUnits('2vw',4).should.be.exactly('8vw');
   });
 });
+
+import {tranpositionReducer, fontSizeReducer, songRawDataReducer, forcedBReducer} from './../src/songbook.jsx';
+describe('Reducer tests:', () => {
+  it('tranpositionReducer', () => {
+    tranpositionReducer(undefined, {}).should.be.exactly(0);
+    tranpositionReducer(0, {type: 'TRANS-PLUS'}).should.be.exactly(1);
+    tranpositionReducer(0, {type: 'TRANS-MINUS'}).should.be.exactly(-1);
+    tranpositionReducer(5, {type: 'Unknow_action'}).should.be.exactly(5);
+  });
+  it('fontSizeReducer', () => {
+    fontSizeReducer(undefined, {}).should.be.exactly(0);
+    fontSizeReducer(0, {type: 'FONT-PLUS'}).should.be.exactly(1);
+    fontSizeReducer(0, {type: 'FONT-MINUS'}).should.be.exactly(-1);
+    fontSizeReducer(5, {type: 'Unknow_action'}).should.be.exactly(5);
+  });
+  it('fontSizeReducer', () => {
+    let mNewState;
+    mNewState = songRawDataReducer(undefined, {})
+    mNewState.should.be.instanceof(SongData);
+    mNewState.rawData.should.be.exactly('');
+    mNewState = songRawDataReducer({}, {type: 'SET-DATA', songData: 'Ami'});
+    mNewState.should.be.instanceof(SongData);
+    mNewState.rawData.should.be.exactly('Ami');
+    mNewState = songRawDataReducer(mNewState, {type: 'Unknown_action'});
+    mNewState.should.be.instanceof(SongData);
+    mNewState.rawData.should.be.exactly('Ami');
+  });
+  it('forcedBReducer', () => {
+    forcedBReducer(undefined, {}).should.be.exactly(false);
+    forcedBReducer(false, {type: 'TOGGLE-FORCEDB'}).should.be.exactly(true);
+    forcedBReducer(true, {type: 'TOGGLE-FORCEDB'}).should.be.exactly(false);
+    forcedBReducer(true, {type: 'Unknow_action'}).should.be.exactly(true);
+  });
+
+});
+

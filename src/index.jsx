@@ -6,8 +6,11 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import { Navs } from 'react-bootstrap';
 import './css/main.css';
 import './css/songbook.css';
-import SongPage from './songbook.jsx';
+import SongBook from './songbook.jsx';
+import {AllReducers} from './songbook.jsx';
 import shortid from 'shortid';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 
 class NavLink extends React.Component {
   render() {
@@ -23,7 +26,7 @@ class Navigator extends React.Component {
         <NavLink className="MyMenuItem" to="/phptest">PHPtest</NavLink>
         <NavLink className="MyMenuItem" to="/repos">Repos</NavLink>
         <NavLink className="MyMenuItem" to="/store/petr/documents">Store</NavLink>
-        <NavLink className="MyMenuItem" to="/info">Songs</NavLink>
+        <NavLink className="MyMenuItem" to="/songs">Songs</NavLink>
       </div>
     )
   }
@@ -58,7 +61,7 @@ class PHPtest extends React.Component {
 
   makeQuery() {
     let xmlhttp = new XMLHttpRequest();
-    let url = "";
+    let url = "http://www.vackovi.com/rest/rest.php?sql=select * from news where id<11 and jazyk='CZ'";
 
     xmlhttp.onreadystatechange = () => {
       if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -142,15 +145,17 @@ class Store extends React.Component {
 
 
 ReactDOM.render(
-  <Router history={hashHistory}>
-      <Route path="/" component={ResponsiveNavigator}>
-        <IndexRoute component={Home}/>
-        <Route path="/repos" component={Repos}/>
-        <Route path="/store/:userName/:reposName" component={Store}/>
-        <Route path="/phptest" component={PHPtest}/>
-        <Route path="/info" component={SongPage}/>
-    </Route>
-  </Router>
+  <Provider store={createStore( AllReducers() )}>
+    <Router history={hashHistory}>
+        <Route path="/" component={ResponsiveNavigator}>
+          <IndexRoute component={Home}/>
+          <Route path="/repos" component={Repos}/>
+          <Route path="/store/:userName/:reposName" component={Store}/>
+          <Route path="/phptest" component={PHPtest}/>
+          <Route path="/songs" component={SongBook}/>
+      </Route>
+    </Router>
+  </Provider>
 , document.body.appendChild(document.createElement('div')));
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////

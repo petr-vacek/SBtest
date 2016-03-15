@@ -55,10 +55,11 @@
   display: inline;
   border: 1px solid black;
   width: 380px;
+  border-radius: 4px;
 }
 
 .TransButton {
-  height: 24px;
+  height: 22px;
   border-radius: 7px 7px 7px 7px;
   font-size: 12px;
 }
